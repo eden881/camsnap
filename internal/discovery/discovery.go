@@ -85,10 +85,7 @@ func Discover(ctx context.Context, timeout time.Duration) ([]Device, error) {
 
 	var devices []Device
 	buf := make([]byte, 8192)
-	for {
-		if ctx.Err() != nil {
-			break
-		}
+	for ctx.Err() == nil {
 		n, _, err := conn.ReadFromUDP(buf)
 		if err != nil {
 			if ne, ok := err.(net.Error); ok && ne.Timeout() {

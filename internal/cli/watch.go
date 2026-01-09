@@ -197,7 +197,7 @@ func parseSceneScore(line string) (float64, bool) {
 	part := line[idx+12:]
 	// trim trailing text
 	for i, r := range part {
-		if !(r == '.' || r == '-' || (r >= '0' && r <= '9')) {
+		if r != '.' && r != '-' && (r < '0' || r > '9') {
 			part = part[:i]
 			break
 		}
